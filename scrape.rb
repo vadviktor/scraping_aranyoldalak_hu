@@ -3,60 +3,22 @@ require 'uri'
 require 'axlsx'
 
 class Vcard
-  def name=(name)
-    @name = name
-  end
-
-  def name()
-    @name
-  end
+  attr_accessor :name, :description, :profession, :address, :phone, :email, :website
 
   def description=(description)
     @description = description.gsub(/[\n\t]/, '').strip
-  end
-
-  def description()
-    @description
-  end
-
-  def profession=(profession)
-    @profession = profession
-  end
-
-  def profession()
-    @profession
   end
 
   def address=(address)
     @address = address.to_s.gsub(/[\n\t]/, '').strip
   end
 
-  def address()
-    @address
-  end
-
   def phone=(phone)
     @phone = phone.join ', '
   end
 
-  def phone()
-    @phone
-  end
-
-  def email=(email)
-    @email = email
-  end
-
-  def email()
-    @email
-  end
-
   def website=(website)
     @website = website.gsub(/[\n\t]/, '').strip
-  end
-
-  def website()
-    @website
   end
 end
 
@@ -96,7 +58,7 @@ counties.each do |county|
 
   vcards = []
   _where = URI.encode county
-  base_url = "http://aranyoldalak.hu/kereses.jspv?what=Aut%C3%B3szervizek&where=#{_where}"
+  base_url = "http://aranyoldalak.hu/kereses.jspv?what=magánóvoda&where=#{_where}"
   _page = 0
 
   loop do
